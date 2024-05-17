@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""Square Class
-This class don't do any thing for the moment
-"""
+"""Square class."""
 class Square:
-    """Defines a square"""
+    """Defines a square."""
     pass
