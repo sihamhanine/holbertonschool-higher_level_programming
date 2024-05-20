@@ -12,8 +12,8 @@ def matrix_divided(matrix, div):
         div: The number to divide by int or float
 
     Raises:
-        TypeError: matrix must be a matrix (list of lists) 
-        of integers/floats 
+        TypeError: matrix must be a matrix (list of lists)
+        of integers/floats
         TypeError: Each row of the matrix must have the same size
         TypeError: div must be a number
         ZeroDivisionError: division by zero
