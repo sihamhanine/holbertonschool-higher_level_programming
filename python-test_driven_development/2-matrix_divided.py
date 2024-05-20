@@ -19,7 +19,7 @@ def matrix_divided(matrix, div):
     Returns:
         A new matrix with a divided elements
     """
-    if not type(div) in (int, float):
+    if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
     if not type(matrix) is list or len(matrix) == 0:
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
