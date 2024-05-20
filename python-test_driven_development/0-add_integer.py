@@ -4,17 +4,17 @@
 
 
 def add_integer(a, b=98):
-    """ Method add_integer add two integers
+    """ Method add_integer add two integers.
 
     Args:
-        a: int or float the first number
-        b: int or float the second number default 98
+        a: int or float the first number.
+        b: int or float the second number default 98.
 
     Raises:
-        TypeError: a et b not an int or float
+        TypeError: a et b not an int or float.
 
     Returns:
-        the sum of two integers
+       the sum of two integers.
     """
     if type(a) not in (int, float):
         raise TypeError('a must be an integer')
@@ -23,7 +23,7 @@ def add_integer(a, b=98):
 
     return int(a) + int(b)
 
-   
+
 if __name__ == "__main__":
     import doctest
     doctest.testfile("tests/0-add_integer.txt")
