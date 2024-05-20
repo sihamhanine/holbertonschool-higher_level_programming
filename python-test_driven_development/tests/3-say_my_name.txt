@@ -1,0 +1,68 @@
+The ''3-say_my_name'' module
+============================
+
+Using ''3-say_my_name''
+-----------------------
+
+Import from module:
+
+    >>> say_my_name = __import__("3-say_my_name").say_my_name
+
+Test basic:
+
+    >>> say_my_name("hello", "there")
+    My name is hello there
+
+Test the first name:
+
+    >>> say_my_name("hello")
+    My name is hello 
+
+Test last name empty:
+
+    >>> say_my_name("hello", "")
+    My name is hello 
+
+Test last and first name empty:
+
+    >>> say_my_name("", "")
+    My name is  
+
+Test just spaces:
+
+    >>> say_my_name("   ", "   ")
+    My name is        
+
+Test empty first name:
+
+    >>> say_my_name("", "there")
+    My name is  there
+
+Test not str arg1:
+
+    >>> say_my_name(98, "there")
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+Test not str arg2:
+
+    >>> say_my_name("hello", 98)
+    Traceback (most recent call last):
+    ...
+    TypeError: last_name must be a string
+
+Test not str arg1 and arg2:
+
+    >>> say_my_name(98, 33)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+Test no arguments:
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+    
