@@ -1,9 +1,10 @@
 #!/usr/bin/python3
+
 """Module add_integer"""
 
+
 def add_integer(a, b=98):
-    """ Method add_integer une fonction that add 2 integers 
-    when they must be integers or float, and return the result
+    """ Method add_integer add two integers
 
     Args:
         a: int or float the first number
@@ -22,6 +23,7 @@ def add_integer(a, b=98):
 
     return int(a) + int(b)
 
+   
 if __name__ == "__main__":
     import doctest
     doctest.testfile("tests/0-add_integer.txt")
