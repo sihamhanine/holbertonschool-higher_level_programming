@@ -6,7 +6,6 @@
 class Rectangle:
     """
     A class that defines a rectangle by its width.
-    
     Attributes:
     ----------
     __width : int
@@ -18,7 +17,6 @@ class Rectangle:
     def __init__(self, width=0, height=0):
         """
         Initializes a new Rectangle instance with the specified width.
-        
         Parameters:
         ----------
         width : int
@@ -33,7 +31,6 @@ class Rectangle:
     def width(self):
         """ 
         Returns the width of the rectangle
-
         """
         return self.__width
 
@@ -58,9 +55,8 @@ class Rectangle:
         
     @property
     def height(self):
-        """ 
+        """
         Returns the height of the rectangle
-
         """
         return self.__height
 
