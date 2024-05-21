@@ -69,7 +69,7 @@ class Rectangle:
 
         Raises:
             TypeError: height must be an integer
-            ValueError: height must be >= 0 
+            ValueError: height must be >= 0
         """
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
