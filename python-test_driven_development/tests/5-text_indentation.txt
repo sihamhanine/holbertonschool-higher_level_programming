@@ -44,7 +44,7 @@ Test just delimeters:
     :
     <BLANKLINE>
 
-Test nonindent inside indent
+Test nonindent inside indent:
 
     >>> text_indentation("?Hello.")
     ?
