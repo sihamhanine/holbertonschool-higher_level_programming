@@ -98,7 +98,7 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             return ""
-        rectangle_str =""
+        rectangle_str = ""
         for i in range(self.height):
             rectangle_str += self.width * "#"
             if i < self.height - 1:
