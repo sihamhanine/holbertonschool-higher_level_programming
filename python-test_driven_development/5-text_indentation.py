@@ -15,7 +15,6 @@ def text_indentation(text):
     """
     if type(text) is not str:
         raise TypeError("text must be a string")
-    
     result = ""
     i = 0
     while i < len(text):
@@ -31,6 +30,6 @@ def text_indentation(text):
 
 
 if __name__ == "__main__":
-    import doctext
-    doctext.textfile("tests/5-text_indentation.txt")
-        
+    import doctest
+    doctest.testfile("tests/5-text_indentation.txt")
+      
