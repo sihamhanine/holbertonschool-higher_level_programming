@@ -152,11 +152,9 @@ class Rectangle:
         """
         Method that return the new Rectangle instance
         with width == height == size
-        
         Args:
             cls: represent the class
             size: the size of rectangle in default = 0
-        
         Returns:
             the new instance of Rectangle
         """
