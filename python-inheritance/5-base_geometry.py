@@ -8,4 +8,3 @@ class BaseGeometry:
     A empty class
     """
     pass
-    
