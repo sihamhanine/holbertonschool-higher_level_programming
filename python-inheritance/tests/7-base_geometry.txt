@@ -113,6 +113,12 @@ Test case #11: A test case with a class value
     ...     print("[{}] {}".format(e.__class__.__name__, e))
     [TypeError] name must be an integer
 
+integer_validator method arg test (0 args):
+
+    >>> bg.integer_validator()
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
 Section // Value Errors
 =========================
 
