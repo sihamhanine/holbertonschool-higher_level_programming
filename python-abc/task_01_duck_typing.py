@@ -31,6 +31,8 @@ class Circle(Shape):
         Args:
             radius: the radius of the class Circle
         """
+        if radius < 0:
+            raise ValueError("Radius cannot be negative")
         self.radius = radius
 
     def area(self):
