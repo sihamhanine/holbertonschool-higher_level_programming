@@ -93,7 +93,10 @@ def shape_info(shape):
     Args:
         shape: the object to print their info
     """
-    shape_area = shape.area()
-    shape_perimeter = shape.perimeter()
-    print("Area: {}".format(shape_area))
-    print("Perimeter: {}".format(shape_perimeter))
+    try:
+        shape_area = shape.area()
+        shape_perimeter = shape.perimeter()
+        print("Area: {}".format(shape_area))
+        print("Perimeter: {}".format(shape_perimeter))
+    except AttributeError as e:
+        print(f"Error: {e}")
