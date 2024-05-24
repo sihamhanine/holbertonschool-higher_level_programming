@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 import math
 
+
 class Shape(ABC):
     """
     Defines a class Shape
@@ -48,7 +49,7 @@ class Circle(Shape):
         Returns:
             perimeter of circle
         """
-        return self.radius * self.radius * math.pi
+        return 2 * math.pi * self.radius
 
 class Rectangle(Shape):
     """
