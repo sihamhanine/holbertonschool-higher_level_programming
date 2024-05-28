@@ -23,14 +23,12 @@ class Student:
         Method that retrieves a dictionary representation of a Student
 
         Args:
-            attrs: the attributes of class
+            attrs: the attributes of class initialite to None
         
         Returns:
             If attrs is a list of strings, only attributes name contained
             in this list must be retrieved. Otherwise, all attributes must be retrieved.
         """
-        if attrs is None:
-            return self.__dict__
         if isinstance(attrs, list):
             filtered_attributes = {}
             for key, value in self.__dict__.items():
