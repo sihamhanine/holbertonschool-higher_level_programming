@@ -37,7 +37,6 @@ class Student:
                 if key in attrs:
                     filtered_attributes[key] = value
             return filtered_attributes
-        
         return self.__dict__
 
     def reload_from_json(self, json):
