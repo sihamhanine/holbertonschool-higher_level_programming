@@ -4,8 +4,8 @@
 
 def class_to_json(obj):
     """
-    Method that returns the dictionary description with simple data structure
-    (list, dictionary, string, integer and boolean) for JSON serialization of an object
+    Method that returns the dictionary description with
+    simple data structure for JSON serialization of an object
 
     Args:
         obj: the object to return hir dictionnary
