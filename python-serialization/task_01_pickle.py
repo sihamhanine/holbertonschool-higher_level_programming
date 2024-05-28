@@ -38,7 +38,7 @@ class CustomObject:
         """
         with open(filename, "wb") as file:
             pickle.dump(self, file)
-            
+
     @classmethod 
     def deserialize(cls, filename):
         """
@@ -47,6 +47,7 @@ class CustomObject:
 
         Args:
             filename: the file to provid in an object deserialized
+            cls: an instance of object
         Returns:
             an instance the CustomObject
         """
