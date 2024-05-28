@@ -26,8 +26,10 @@ class Student:
             attrs: the attributes of class initialite to None
         
         Returns:
-            If attrs is a list of strings, only attributes name contained
-            in this list must be retrieved. Otherwise, all attributes must be retrieved.
+            If attrs is a list of strings,
+            only attributes name contained
+            in this list must be retrieved.
+            Otherwise, all attributes must be retrieved.
         """
         if isinstance(attrs, list):
             filtered_attributes = {}
