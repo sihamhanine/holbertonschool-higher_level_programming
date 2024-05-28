@@ -7,6 +7,7 @@ class CustomObject:
     """
     Defines a class CustomObject
     """
+    
     def __init__(self, name, age, is_student):
         """
         Constructor of the class CustomObject
