@@ -24,10 +24,8 @@ class Student:
 
         Args:
             attrs: the attributes of class
-        
         Returns:
-            If attrs is a list of strings, only attributes name contained
-            in this list must be retrieved. Otherwise, all attributes must be retrieved.
+            this list must be retrieved. Otherwise, all attributes
         """
         if attrs is None:
             return self.__dict__
