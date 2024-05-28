@@ -3,9 +3,11 @@
 
 
 class Student:
+    
     """Defines a class"""
 
     def __init__(self, first_name, last_name, age):
+        
         """
         Method that instantiate the attribute of a class
 
@@ -19,6 +21,7 @@ class Student:
         self.age = age
 
     def to_json(self, attrs=None):
+        
         """
         Method that retrieves a dictionary representation
         of a Student
