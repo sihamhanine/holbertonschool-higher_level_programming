@@ -20,15 +20,14 @@ class Student:
 
     def to_json(self, attrs=None):
         """
-        Method that retrieves a dictionary representation of a Student
+        Method that retrieves a dictionary representation
+        of a Student
 
         Args:
             attrs: the attributes of class initialite to None
         
         Returns:
-            If attrs is a list of strings,
-            only attributes name contained
-            in this list must be retrieved.
+            If attrs is a list this list must be retrieved.
             Otherwise, all attributes must be retrieved.
         """
         if isinstance(attrs, list):
