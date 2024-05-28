@@ -30,7 +30,7 @@ class Student:
             in this list must be retrieved. Otherwise, all attributes must be retrieved.
         """
         if attrs is None:
-            self.__dict__
+            return self.__dict__
         if isinstance(attrs, list):
             filtered_attributes = {}
             for key, value in self.__dict__.items():
