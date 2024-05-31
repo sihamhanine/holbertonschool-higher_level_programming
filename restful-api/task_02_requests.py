@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+"""Module task_02_requests """
 import requests
 import csv
 
 
 def fetch_and_print_posts():
+    """
+    Method that that fetches all post from JSONPlaceholder.
+    """
     url = 'https://jsonplaceholder.typicode.com/posts'
     response = requests.get(url)
     print("Status code:", response.status_code)
@@ -16,6 +20,9 @@ def fetch_and_print_posts():
 
 
 def fetch_and_save_posts():
+    """
+    Method that fetches all post from JSONPlaceholder.
+    """
     url = 'https://jsonplaceholder.typicode.com/posts'
     response = requests.get(url)
     if response.status_code == 200:
