@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Module task_02_requests"""
 import requests
 import csv
 
@@ -14,7 +15,6 @@ def fetch_and_print_posts():
         data = response.json()
         for post in data:
             print(post['title'])
-    else:
         print("Failed to fetch posts from the server.")
 
 
@@ -33,5 +33,4 @@ def fetch_and_save_posts():
             for post in data:
                 filtered_post = {key: post[key] for key in keys}
                 writer.writerow(filtered_post)
-    else:
         print("Failed to fetch posts from the server.")
