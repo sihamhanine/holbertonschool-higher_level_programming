@@ -12,13 +12,13 @@ def fetch_and_print_posts():
         for post in data:
             print(post.get('title', 'Title not found'))
 
+
 def fetch_and_save_posts():
     url = 'https://jsonplaceholder.typicode.com/posts'
     response = requests.get(url)
-    
     if response.status_code == 200:
         data = response.json()
-        keys = ['userId', 'id', 'title', 'body']  # Ajouter 'id' aux noms de colonnes
+        keys = ['userId', 'id', 'title', 'body']
         with open('posts.csv', 'w', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=keys)
             writer.writeheader()
