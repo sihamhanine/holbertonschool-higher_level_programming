@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Module task_02_requests """
 import requests
 import csv
 
