@@ -10,7 +10,9 @@ def fetch_and_print_posts():
     if response.status_code == 200:
         data = response.json()
         for post in data:
-            print(post.get('title', 'Title not found'))
+            print(post['title'])
+    else:
+        print("Failed to fetch posts from the server.")
 
 
 def fetch_and_save_posts():
