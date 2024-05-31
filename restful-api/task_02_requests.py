@@ -10,12 +10,11 @@ def fetch_and_print_posts():
     """
     url = 'https://jsonplaceholder.typicode.com/posts'
     response = requests.get(url)
-    print("Status code:", response.status_code)
+    print("Status Code: {}".format(response.status_code))
     if response.status_code == 200:
         data = response.json()
         for post in data:
             print(post['title'])
-        print("Failed to fetch posts from the server.")
 
 
 def fetch_and_save_posts():
@@ -33,4 +32,3 @@ def fetch_and_save_posts():
             for post in data:
                 filtered_post = {key: post[key] for key in keys}
                 writer.writerow(filtered_post)
-        print("Failed to fetch posts from the server.")
