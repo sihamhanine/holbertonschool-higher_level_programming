@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Defines module task_03_http_server"""
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
@@ -35,11 +36,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoint not found")
 
 
-def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, port=8000):
+def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
+        port=8000):
+    """Method for test run server http"""
     server_address = ('0.0.0.0', port)
     httpd = server_class(server_address, handler_class)
     print(f"Starting httpd server on port {port}")
     httpd.serve_forever()
+
 
 if __name__ == "__main__":
     run()
