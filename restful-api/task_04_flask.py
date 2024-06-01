@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""module task_04_flask"""
+"""
+    Module that set up basic flask Server
+"""
 
 
 from flask import Flask, jsonify, request
