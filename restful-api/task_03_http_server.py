@@ -39,7 +39,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
         port=8000):
     """Method for test run server http"""
-    server_address = ('0.0.0.0', port)
+    server_address = ('localhost', port)
     httpd = server_class(server_address, handler_class)
     print(f"Starting httpd server on port {port}")
     httpd.serve_forever()
