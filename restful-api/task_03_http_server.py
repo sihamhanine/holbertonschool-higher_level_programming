@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Defines module task_03_http_server"""
+
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 
@@ -23,6 +25,15 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write((json.dumps(data) + "\n").encode('utf-8'))
+        elif self.path == '/info':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            data = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+            }
+            self.wfile.write((json.dumps(data) + "\n").encode("utf-8"))
         elif self.path == '/status':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
@@ -32,7 +43,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"Endpoint not found\n")
+            self.wfile.write(b"404 Not Found\n")
 
 
 def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
@@ -45,4 +56,7 @@ def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler,
 
 
 if __name__ == "__main__":
+    """
+    Main function that run the server
+    """
     run()
