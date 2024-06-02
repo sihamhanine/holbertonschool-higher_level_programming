@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 """
-    Module that set up basic flask Server
+Module task_04_flask
+
+A simple Flask API with endpoints for various functionalities.
 """
 
 
 from flask import Flask, jsonify, request
 
+
 app = Flask(__name__)
+
 
 users = {
     "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"},
@@ -17,7 +21,10 @@ users = {
 @app.route('/')
 def home():
     """
-    Method taht return the meassge bienvenue
+    Welcome message endpoint
+
+    Returns:
+        str: A welcome message.
     """
     return "Welcome to the Flask API!"
 
@@ -25,7 +32,10 @@ def home():
 @app.route('/data')
 def get_usernames():
     """
-    method that endpoint to return list of usernames
+    Endpoint to return list of usernames
+
+    Returns:
+        JSON: A list of usernames stored in the 'users' dictionary.
     """
     return jsonify(list(users.keys()))
 
@@ -33,7 +43,10 @@ def get_usernames():
 @app.route('/status')
 def status():
     """
-    method that return status
+    Endpoint to return status
+
+    Returns:
+        str: "OK" indicating that the API is running.
     """
     return "OK"
 
@@ -41,7 +54,13 @@ def status():
 @app.route('/users/<username>')
 def get_user(username):
     """
-    Method that return user details by username
+    Endpoint to return user details by username
+
+    Args:
+        username (str): The username to retrieve.
+
+    Returns:
+        JSON: User details if the username exists, otherwise an error message.
     """
     if username in users:
         return jsonify(users[username])
@@ -52,7 +71,21 @@ def get_user(username):
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """
-    Method that add new user
+    Endpoint to add new user
+
+    Method:
+        POST
+
+    Request Body:
+        JSON: {
+            "username": "str",
+            "name": "str",
+            "age": int,
+            "city": "str"
+        }
+
+    Returns:
+        JSON: Confirmation message with the added user's data.
     """
     user_data = request.get_json()
     username = user_data.get('username')
@@ -61,7 +94,4 @@ def add_user():
 
 
 if __name__ == "__main__":
-    """
-    method that run the server flask
-    """
     app.run(debug=True)
