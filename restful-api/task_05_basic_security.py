@@ -7,21 +7,33 @@ et une authentification par token JWT. Il inclut également des points de
 terminaison protégés par des rôles d'utilisateur.
 """
 
+import secrets
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    jwt_required,
+    get_jwt_identity
+)
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this to a random secret key
-
 auth = HTTPBasicAuth()
+
+app.config['JWT_SECRET_KEY'] = secrets.token_urlsafe(32)
 jwt = JWTManager(app)
 
 # Users stored in memory with hashed passwords
 users = {
-    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
-    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
+    "user1": {
+        "username": "user1",
+        "password": generate_password_hash("password"),
+        "role": "user"},
+    "admin1": {
+        "username": "admin1",
+        "password": generate_password_hash("password"),
+        "role": "admin"}
 }
 
 @auth.verify_password
