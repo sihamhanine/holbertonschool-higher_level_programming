@@ -26,145 +26,87 @@ jwt = JWTManager(app)
 
 # Users stored in memory with hashed passwords
 users = {
-    "user1": {
-        "username": "user1",
-        "password": generate_password_hash("password"),
-        "role": "user"},
-    "admin1": {
-        "username": "admin1",
-        "password": generate_password_hash("password"),
-        "role": "admin"}
+    "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
+    "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
 }
 
-@auth.verify_password
-def verify_password(username, password):
-    """
-    Verify password for basic authentication.
 
-    Parameters:
-    - username: The username provided by the client.
-    - password: The password provided by the client.
+@app.route('/')
+def home():
+    return "Welcome to the Flask API!"
 
-    Returns:
-    - The username if authentication is successful, otherwise None.
-    """
-    if username in users and check_password_hash(users[username]['password'], password):
-        return username
+# Data route
+@app.route('/data', methods=['GET'])
+def get_usernames():
+    return jsonify(list(users.keys()))
 
-@app.route('/basic-protected')
-@auth.login_required
-def basic_protected():
-    """
-    Basic Auth protected route.
+# Status route
+@app.route('/status', methods=['GET'])
+def status():
+    return "OK"
 
-    Returns:
-    - A message "Basic Auth: Access Granted" if the user provides valid basic authentication credentials.
-    """
-    return "Basic Auth: Access Granted"
+# Get user by username
+@app.route('/users/<username>', methods=['GET'])
+def get_user(username):
+    if username in users:
+        return jsonify(users[username])
+    else:
+        return jsonify({"error": "User not found"}), 404
 
+# Add user route
+@app.route('/add_user', methods=['POST'])
+def add_user():
+    data = request.json
+    username = data.get('username')
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+    if username in users:
+        return jsonify({"error": "Username already exists"}), 400
+    
+    users[username] = {
+        "username": username,
+        "name": data.get("name"),
+        "age": data.get("age"),
+        "city": data.get("city")
+    }
+    return jsonify({"message": "User added", "user": users[username]}), 201
+
+# Login route
 @app.route('/login', methods=['POST'])
 def login():
-    """
-    JWT login route.
-
-    Accepts JSON payload with username and password. Returns a JWT token if credentials are valid.
-
-    Example Request:
-    {
-        "username": "user1",
-        "password": "password"
-    }
-
-    Example Response:
-    {
-        "access_token": "<JWT_TOKEN>"
-    }
-    """
-    data = request.get_json()
+    data = request.json
     username = data.get('username')
     password = data.get('password')
     user = users.get(username)
-    
-    if user and check_password_hash(user['password'], password):
-        access_token = create_access_token(identity={'username': username, 'role': user['role']})
-        return jsonify(access_token=access_token)
-    return jsonify({"error": "Invalid credentials"}), 401
 
-@app.route('/jwt-protected')
+    if not user or not check_password_hash(user['password'], password):
+        return jsonify({"error": "Invalid username or password"}), 401
+    
+    access_token = create_access_token(identity={"username": username, "role": user["role"]})
+    return jsonify(access_token=access_token)
+
+# Basic protected route
+@app.route('/basic-protected', methods=['GET'])
+def basic_protected():
+    auth = request.authorization
+    if not auth or not check_password_hash(users.get(auth.username, {}).get('password', ''), auth.password):
+        return "Unauthorized Access", 401
+    return "Basic Auth: Access Granted"
+
+# JWT protected route
+@app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
 def jwt_protected():
-    """
-    JWT protected route.
-
-    Returns:
-    - A message "JWT Auth: Access Granted" if the user provides a valid JWT token.
-    """
     return "JWT Auth: Access Granted"
 
-@app.route('/admin-only')
+# Admin only route
+@app.route('/admin-only', methods=['GET'])
 @jwt_required()
 def admin_only():
-    """
-    Role-based protected route.
-
-    Returns:
-    - A message "Admin Access: Granted" if the user is an admin.
-    - A 403 Forbidden response if the user is not an admin.
-    """
     current_user = get_jwt_identity()
-    if current_user['role'] == 'admin':
-        return "Admin Access: Granted"
-    return jsonify({"error": "Forbidden"}), 403
+    if current_user["role"] != "admin":
+        return jsonify({"error": "Forbidden"}), 403
+    return "Admin Access: Granted"
 
-@jwt.unauthorized_loader
-def handle_unauthorized_error(err):
-    """
-    Handle unauthorized error for JWT.
-
-    Returns:
-    - A 401 Unauthorized response with an error message.
-    """
-    return jsonify({"error": "Missing or invalid token"}), 401
-
-@jwt.invalid_token_loader
-def handle_invalid_token_error(err):
-    """
-    Handle invalid token error for JWT.
-
-    Returns:
-    - A 401 Unauthorized response with an error message.
-    """
-    return jsonify({"error": "Invalid token"}), 401
-
-@jwt.expired_token_loader
-def handle_expired_token_error(err):
-    """
-    Handle expired token error for JWT.
-
-    Returns:
-    - A 401 Unauthorized response with an error message.
-    """
-    return jsonify({"error": "Token has expired"}), 401
-
-@jwt.revoked_token_loader
-def handle_revoked_token_error(err):
-    """
-    Handle revoked token error for JWT.
-
-    Returns:
-    - A 401 Unauthorized response with an error message.
-    """
-    return jsonify({"error": "Token has been revoked"}), 401
-
-@jwt.needs_fresh_token_loader
-def handle_needs_fresh_token_error(err):
-    """
-    Handle needs fresh token error for JWT.
-
-    Returns:
-    - A 401 Unauthorized response with an error message.
-    """
-    return jsonify({"error": "Fresh token required"}), 401
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
