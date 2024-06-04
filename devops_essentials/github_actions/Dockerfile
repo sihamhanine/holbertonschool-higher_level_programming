@@ -1,8 +1,8 @@
-#utilise l'image de base alpine
+# Alpine base image 
 FROM alpine
-
-#install curl
+# Send message "Hello, World!" when the container runs.
+CMD ["echo", "Hello, World!"]
+# Add the curl package
 RUN apk add --no-cache curl
-
-#commande par dfaut qui s'execute lorsque le conteneur demarre
-CMD ["echo", "Hello, World!, lets modify"]
+# Add config.txt file to appropriate location
+COPY config.txt /app/config.txt
