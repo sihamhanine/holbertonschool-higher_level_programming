@@ -14,13 +14,12 @@ if __name__ == "__main__":
     Access to database and get all states
     from the database
     """
-    # Récupérer les arguments de la ligne de commande
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
     # Créer un moteur de connexion à la base de données MySQL
     engine = create_engine(f"mysql+mysqldb://{username}:{password}@ \
-    localhost:3306/{database}")
+    localhost:3306/{database}", echo=True)
 
     # creer une session pour interagir avec bd
     Session = sessionmaker(bind=engine)
@@ -28,10 +27,10 @@ if __name__ == "__main__":
     session = Session()
 
     # Requête pour obtenir tous les objets State et les trier par id
-    req = session.query(State).order_by(State.id).all()
+    req = session.query(State).order_by(State.id)
 
     # afficher le resultat
     for state in req:
-        print(f"{state.id}: {state.name}")
+        print("{0}: {1}".format(state.id, state.name))
     # Fermer la session
     session.close()
