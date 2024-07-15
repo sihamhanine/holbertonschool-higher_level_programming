@@ -8,7 +8,7 @@ app = Flask(__name__)
 def load_products_from_json(filename):
     with open(filename, 'r') as f:
         data = json.load(f)
-    return data['items']
+    return data
 
 def load_products_from_csv(filename):
     products = []
